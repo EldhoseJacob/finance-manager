@@ -35,7 +35,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Add an Expense</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Add Expense for {{selectedcategory}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -48,25 +48,27 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 			</div>
 			<div class="form-group">
 				<label for="description">Description</label>
-				<input type="text" class="form-control" id="description" placeholder="Enter Description" ng-model="description">    
+				<input type="text" class="form-control input-lg" id="description" placeholder="Enter Description" ng-model="description" name="description" select-on-click>    
 			</div>
 			<div class="form-group">
 				<label for="description">Amount</label>
-				<input type="text" class="form-control" id="amount" placeholder="Enter Amount" ng-model="amount">    
+				<input type="text" class="form-control input-lg" id="amount" placeholder="Enter Amount" ng-model="amount" select-on-click>    
 			</div>
 			<button type="button" class="btn btn-primary" ng-click="addExpense()">Add</button>
 		</form>
 		<br/>
 		<table class="table">
 			<tr>
+				<th><input type="checkbox" ng-model="editEntries"/> Edit Mode</th>
 				<th>Date</th>
 				<th>Description</th>
 				<th>Amount</th>
 			</tr>
 			<tr ng-repeat="transaction in selectedExpenseDetails">
+				<th><input type="checkbox" ng-disabled="!editEntries" ng-model="transaction.selected"/></th>
 				<td>{{transaction.expensedate}}</td>
 				<td>{{transaction.name}}</td>
-				<td>{{transaction.amount}}</td>
+				<td>${{transaction.amount}}</td>
 			</tr>
 		</table>
       </div>
@@ -82,7 +84,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="passwordPromptModalLabel">Add an Expense</h5>
+        <h5 class="modal-title" id="passwordPromptModalLabel">Enter password to retrieve data</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

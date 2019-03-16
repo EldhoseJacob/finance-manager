@@ -10,6 +10,24 @@ app.directive('customOnChange', function () {
     };
 });
 
+app.directive('selectOnClick', function () {
+    return {
+        restrict: 'A',
+        link: function (scope, element) {
+            var focusedElement;
+            element.on('click', function () {
+                if (focusedElement != this) {
+                    this.select();
+                    focusedElement = this;
+                }
+            });
+            element.on('blur', function () {
+                focusedElement = null;
+            });
+        }
+    };
+})
+
 
 app.controller("ejFinanceMainCtrl", function ($scope,$http) {
     $scope.mynewVariable="shopping-cart";
@@ -82,6 +100,8 @@ app.controller("ejFinanceMainCtrl", function ($scope,$http) {
 		}
 		$http(addExpenseReq)
 			.then(function(response) {
+				$scope.description="";
+				$scope.amount=0;
 				if($scope.categoryInfoArray[$scope.selectedcategory].txnsForTheMonth==undefined){
 					$scope.categoryInfoArray[$scope.selectedcategory].txnsForTheMonth=[];
 				}
