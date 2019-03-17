@@ -44,10 +44,10 @@ app.controller("ejFinanceMainCtrl", function ($scope,$http) {
 	$scope.showPasswordPromptModal=function(category){
 		
 		$('#passwordPromptModal').modal('show');
-		//getExpenseCategories()
 	};
 	
 	$scope.decryptURLsAndGetData=function(){
+		//https://robinmoisson.github.io/staticrypt/
 		
 		$scope.apiKey=$scope.decrypt("df96ca9134e1840cbf4bb886f293fa76b4bebc5ae853e5d21c0453c58c8d5cd7U2FsdGVkX19DOJNrXDRc2OJXGCyN/z9T5wKKindJpxIER576Xj7LXibiOC5pntS7EtibcO1fgwYviNWy2pXR6g==",$scope.passphrase)		
 		
